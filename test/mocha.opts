@@ -1,0 +1,6 @@
+--require should
+--reporter spec
+--ui tdd
+--compilers coffee:coffee-script
+--timeout 3000
+--slow 1000
