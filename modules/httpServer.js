@@ -12,6 +12,7 @@ exports.Server = function() {
     }
     else {
       res.statusCode = 200;
+      res.setHeader("Content-Type", "text/plain");
       var queryData = urlParts.query;
       var filepath = path.join(__dirname, 'db/' + queryData.key);
       delete queryData.key;
@@ -19,13 +20,16 @@ exports.Server = function() {
         case '/save':
           fs.writeFile(filepath, JSON.stringify(queryData), function(err) {
             if(err) res.statusCode = 400;
+            else res.write('Saved object !');
             res.end();  
           });
           
           break;
         case '/remove':
-          if(fs.existsSync(filepath))
+          if(fs.existsSync(filepath)) {
             fs.unlink(filepath);
+            res.write('Removed object !');
+          }
           else
             res.statusCode = 400;
           res.end();
