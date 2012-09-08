@@ -21,6 +21,12 @@ suite('Test messages', function() {
   });
   
   suite('Invalid request', function() {
+    test('Demo synchronous code', function() {
+      var expected = 100;
+      var actual = 100;
+      actual.should.equal(expected);
+    });
+    
     test('Request to /doesnt-exist-endpoint', function(done) {
       sendGet({ pathname: '/doesnt-exist-endpoint' }, function(res) {
         res.statusCode.should.equal(400);
@@ -72,7 +78,7 @@ suite('Test messages', function() {
   });
   
   suite('Request on object', function() {
-    keyValue = 'participant1';
+    var keyValue = 'participant1';
     test('Save', function(done) {
       sendGet({ pathname: '/save', query: { key: keyValue,  name: 'duy lam', location: 'barcamp saigon 2012' } }, function(res) {
         res.statusCode.should.equal(200);
@@ -133,7 +139,8 @@ suite('Test messages', function() {
         });
       });
     });
+    
+    test('Request to /remove-all');
   });
   
-
 });
